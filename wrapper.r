@@ -1,5 +1,7 @@
-source("C:\\Users\\s2607536\\OneDrive - University of Edinburgh\\Code\\BEAS Code implementation\\generate_networks.R")
-source("C:\\Users\\s2607536\\OneDrive - University of Edinburgh\\Code\\BEAS Code implementation\\spreadfunctions_2.R")
+source("C:\\Users\\s2607536\\Downloads\\generate_networks.R")
+source("C:\\Users\\s2607536\\Downloads\\spreadfunctions_2.R")
+library(foreach)
+netsize<- 200
 
 #from https://stats.stackexchange.com/questions/78849/measure-for-separability
 bhatt_coef<-function(vec1,vec2){
@@ -21,8 +23,10 @@ get_u_from_s=function(u_tmp,rnet,infres,thresh=0.75,n_seeds=1,loc_seed="R",infor
 	#cat(paste(u_tmp,"\n"))
 	t_tmps=foreach(i=1:50,.combine=c,.packages="igraph")%dopar%{
 
-		source("spreadfunctions_2.R")
-		source("wrapper.R")
+
+		source("C:\\Users\\s2607536\\Downloads\\spreadfunctions_2.R")
+		source("C:\\Users\\s2607536\\Downloads\\wrapper.R")
+		
 		res2.r.1<-do_spr(net=rnet,type="informed",n_seeds=n_seeds,loc_seed=loc_seed,inform.type=inform.type,min_learn=min_learn,thr_steep=thr_steep,u=u_tmp,tmax=tmax,thresh=thresh,returnnets=F,verbose=F)
   			if(is.na(sort(res2.r.1$wheninformed,na.last=TRUE)[thresh_point])==FALSE){
    				sort(res2.r.1$wheninformed,na.last=TRUE)[thresh_point]
@@ -52,6 +56,8 @@ thresh_point=thresh*netsize
 
 #conformist learning steepness
 minlearn=0.001;thrsteep=10
+
+outputdir <- "C:\\Users\\s2607536\\Downloads\\output_directory"
 
 #for each density
 foreach(density=densities)%do%{
@@ -142,8 +148,10 @@ foreach(density=densities)%do%{
 			}
 			cat(paste("export",density,rep,R0,"\n"))
 
-			write.csv(allresultdf,file.path(outputdir,paste(density,rep,R0,".csv",sep="_"),fsep="\\"),row.names=F)
+			#write.csv(allresultdf,file.path(outputdir,paste(density,rep,R0,".csv",sep="_"),fsep="\\"),row.names=F)
 
-			T
+			
 		}	
 	}			
+
+

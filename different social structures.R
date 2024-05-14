@@ -11,7 +11,7 @@ plot(
 )
 
 #dolphins
-dolphins<- all_graphs[["dolphin_association_weighted"]][[1]]
+dolphins<- all_graphs[["dolphin_proximity_unweighted"]][[1]]
 dolphin_edge_weights <- get.edge.attribute(dolphins, "weight")
 weighted_dolphins <- dolphins
 E(weighted_dolphins)$weight <- dolphin_edge_weights
@@ -64,7 +64,7 @@ plot(
   weighted_rhesus,
   layout = layout_nicely(weighted_rhesus),
   vertex.label= NA,
-  main = "rhesus macaque")
+  main = "Rhesus macaque social network")
 
 #sticklebacks
 stickleback<- all_graphs[["fishstickleback_proximity_weighted"]][[1]]
@@ -115,9 +115,9 @@ plot(
 #hens
 hens <- all_graphs[["hens_dominance_weighted"]][[1]]
 
-
-
-
+hyenas<- all_graphs[["hyenas_groupmembership_weighted"]][[1]]
+bats<-all_graphs[["bats_roostuse_weighted"]][[1]]
+elephants<- all_graphs[["asianelephants_dominance_unweighted"]][1]
 zebra <- all_graphs[["zebra_groupmembership_weighted"]][[1]]
 
 edge_weights <- get.edge.attribute(zebra, "weight")
