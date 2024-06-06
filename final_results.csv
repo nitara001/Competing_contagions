@@ -1,0 +1,3 @@
+"","infected.mean","infected.sd","Prop_infected","informed.mean","informed.sd","Prop_informed","bhs","modularity","avg_module_size","chosenu","r_infected_mean","r_infected_sd","r_informed_mean","r_informed_sd","r_bhs"
+"sneaker_sexual_unweighted_1",2.04,1.14214263378895,0.0172881355932203,3.46,2.46783388452964,0.0293220338983051,0.20385486341902,0.922745460141582,7.375,0.189161091200531,1.86,1.0692358514951,2.02,1.16916156946344,0.00454247160266575
+"geese_association_weighted_1",19.68,1.30054933448469,0.984,20,0,1,Inf,0.323471177844297,10,0.816413358007923,19.88,0.328260722659316,20,0,Inf
