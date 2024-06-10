@@ -10,13 +10,14 @@ calculate_transmission_probability <- function(R0, network) {
   k2 <- mean(degree(network)^2) 
   # Time period over which R0 is calculated- 
   #remember this is now not prop to time of a simulation
-  t <- 20
+  t <- 100
   # Calculate r, the transmission probability for a time period t in that network
   r <- R0 / ((k2 - k) / k)
   # Calculate beta, the per timestep transmission probability per connection
   beta <- 1 - (1 - r)^(1/t)
   return(beta)
 }
+
 
 calculate_modularity_and_avg_module_size <- function(network) {
     community <- cluster_louvain(network, weights= E(network)$weight)

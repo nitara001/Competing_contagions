@@ -1,5 +1,5 @@
 source("C:\\Users\\s2607536\\OneDrive - University of Edinburgh\\Code\\BEAS Code implementation\\Original_BEAS\\spreadfunctions_2.R")
-source("C:\\Users\\s2607536\\OneDrive - University of Edinburgh\\Code\\BEAS Code implementation\\Original_BEAS\\generate_networks.R")
+
 
 #"C:/Users/s2607536/AppData/Local/Programs/R/R-43~1.2/bin/R.exe"
 ##----------------------------------------------
@@ -48,12 +48,29 @@ get_u_from_s <- function(u_tmp, rnet, infres) {
   return(as.vector(bh))
 }
 
+calculate_modularity_largest_component <- function(network) {
+    # Get the largest connected component
+    components<- igraph::clusters(network, mode= "weak")
+    biggest_cluster_id <- which.max(components$csize)
+    vert_ids <- V(network)[components$membership == biggest_cluster_id]
+    largest_component= igraph::induced_subgraph(network, vert_ids)
+
+    # Calculate modularity on the largest component
+    community <- cluster_louvain(largest_component, weights = E(largest_component)$weight)
+    modularity <- modularity(community)
+    
+    # Calculate average module size on the largest component
+    avg_module_size <- mean(sizes(community))
+    
+    return(list(modularity = modularity, avg_module_size = avg_module_size))
+}
 calculate_modularity_and_avg_module_size <- function(network) {
     community <- cluster_louvain(network, weights= E(network)$weight)
     modularity<- modularity(community)
     avg_module_size <- mean(sizes(community))
     return(list(modularity = modularity, avg_module_size = avg_module_size))
 }
+
 
 extracted_networks <- list()
 for (i in seq_along(all_graphs)) {
@@ -91,8 +108,9 @@ for (network_name in unique_network_names) {
 foreach(network_name = names(sampled_networks)[1:min(length(sampled_networks), 57)]) %do% {
   network <- sampled_networks[[network_name]]
   random_network <- erdos.renyi.game(igraph::vcount(network), igraph::ecount(network), type = "gnm")
-  
-r_adj= 0.005
+
+
+  r_adj= 0.005
   
   t1s.r.1 <- foreach(i = 1:50, .combine = c, .packages = "igraph") %do% {
     res1.r.1 <- do_spr(net = random_network, type = "infected", n_seeds = 1, loc_seeds = 'R', s = r_adj, tmax = 100, returnnets = FALSE, verbose = FALSE, inform.type = "conformist")
@@ -114,17 +132,24 @@ min_u <- opt_result$minimum
     data.frame(network = network_name, numinfected = sum(res1.m.1$infected), numinformed = sum(res1.m.1$informed))
   }
 
-  modularity_and_avg_module_size <- calculate_modularity_and_avg_module_size(network)
+  t1s.m.2<- foreach(i = 1:50, .combine = rbind, .packages = "igraph") %dopar% {
+    res1.m.2 <- do_spr(net = network, type = "both", n_seeds = 1, inform.type = "proportional", min_learn = 0.0001, loc_seeds = 'R', s = r_adj, u = min_u, tmax = 100, returnnets = FALSE, verbose = TRUE)
+    data.frame(network = network_name, numinfected = sum(res1.m.2$infected), numinformed = sum(res1.m.2$informed))}
+
+  modularity_and_avg_module_size <- calculate_modularity_largest_component(network)
   modularity_score <- modularity_and_avg_module_size$modularity
   avg_module_size <- modularity_and_avg_module_size$avg_module_size
   
   resultdf <- data.frame(
     infected.mean = mean(t1s.m.1$numinfected, na.rm = TRUE),
     infected.sd = sd(t1s.m.1$numinfected, na.rm = TRUE),
-    Prop_infected=  mean(t1s.m.1$numinfected, na.rm = TRUE) / vcount(network),
-    informed.mean = mean(t1s.m.1$numinformed, na.rm = TRUE),
-    informed.sd = sd(t1s.m.1$numinformed, na.rm = TRUE),
-    Prop_informed=  mean(t1s.m.1$numinformed, na.rm = TRUE) / vcount(network),
+    prop_infected=  mean(t1s.m.1$numinfected, na.rm = TRUE) / vcount(network),
+    conformist.informed.mean = mean(t1s.m.1$numinformed, na.rm = TRUE),
+    conformist.informed.sd = sd(t1s.m.1$numinformed, na.rm = TRUE),
+    conformist.prop_informed=  mean(t1s.m.1$numinformed, na.rm = TRUE) / vcount(network),
+    proportional.informed.mean=  mean(t1s.m.2$numinformed, na.rm = TRUE),
+    proportional.informed.sd =  sd(t1s.m.2$numinformed, na.rm = TRUE),
+    proportional.prop_informed= mean(t1s.m.2$numinformed, na.rm = TRUE) / vcount(network),
     bhs = bhatt_coef(as.vector(t1s.m.1$numinfected), as.vector(t1s.m.1$numinformed)),
     modularity = modularity_score,
     avg_module_size = avg_module_size,
