@@ -3,29 +3,30 @@ library(ggplot2)
 library(mgcv)
 library(marginaleffects)
 #check for correlations between variables
-infection_results_df$Modularity<- as.numeric(infection_results_df$Modularity)
-cor.test(infection_results_df$Modularity, infection_results_df$Network_Size)
-cor.test(final_resultdf$Avg_Module_Size, final_resultdf$Network_Size)
-cor.test(infection_results_df$Avg_Module_Size, infection_results_df$Modularity)
-cor.test(infection_results_df$Modularity, infection_results_df$Mean_Degree)
-cor.test(infection_results_df$Modularity, infection_results_df$Std_Degree)
+
+final_resultdf<- read.csv("C:\\Users\\s2607536\\OneDrive - University of Edinburgh\\Code\\BEAS Code implementation\\final_results.csv")
 #infectione
 final_resultdf$modularity<- as.numeric(final_resultdf$modularity)
 
 
-summary(lm(Prop_infected ~ modularity, data= final_resultdf))
-summary(lm(Prop_informed ~ modularity, data= final_resultdf))
-model_1= mgcv::gam(Prop_infected ~ s(modularity) + s(avg_module_size), data = final_resultdf)
+summary(lm(prop_infected ~ qrel + avg_path_length, data= final_resultdf))
+summary(lm(conformist.prop_informed ~ modularity + avg_path_length, data= final_resultdf))
+model_1= mgcv::gam(prop_infected ~ s(qrel) + avg_module_size + clustering + avg_path_length, data = final_resultdf)
 summary(model_1)
-plot(model_1, select = 2, shade = TRUE)
-abline(h = 0, lty = 'dashed')
+plot(model_1, select = 1, shade = TRUE)
+
+model_2= mgcv::gam(conformist.prop_informed~ s(modularity) + avg_module_size + clustering + avg_path_length, data = final_resultdf)
+summary(model_2)
+plot(model_1, select = 1, shade = TRUE)
+
 
 ###-----------------------------------------------------
 
 
 ggplot(final_resultdf, aes(x = modularity)) +
-  geom_smooth(aes(y = prop_infected), method = "loess", color = "#2F4F4F", se = FALSE) +  # Disable shading
-  geom_smooth(aes(y = proportional.prop_informed), method = "loess", color = "blue", se = FALSE) +  # Disable shading
+  geom_smooth(aes(y = prop_infected), method = "loess", color = "#2F4F4F", se = FALSE) + 
+  geom_smooth(aes(y = proportional.prop_informed), method = "loess", color = "blue", se = FALSE) + 
+  geom_smooth(aes(y = conformist.prop_informed), method = "loess", color = "green", se = FALSE) +
   labs(title = "", x = "", y = "") +
   theme_classic() +
   theme(axis.text.x = element_text(size = rel(1.8)),
@@ -42,6 +43,6 @@ p +
   )
 
   ggplot(final_resultdf, aes(x = modularity)) +
-  geom_smooth(aes(y = difference), method = "loess", color = "#2F4F4F", se = FALSE) +  # Disable shading
+  geom_smooth(aes(y = difference), method = "loess", color = "#2F4F4F", se = FALSE) +  
   labs(title = "", x = "", y = "") +
   theme_classic() 

@@ -22,11 +22,10 @@ bhatt_coef<-function(vec1,vec2){
 }
 
 #function used when optimising u 
-get_u_from_s <- function(u_tmp, rnet, infres) {
+get_u_from_s <- function(u_tmp, rnet, infres, inform.type) {
   thresh <- 1.0
   n_seeds <- 1
   loc_seed <- "R"
-  inform.type <-"conformist"
   min_learn <- 0.001
   thr_steep <- 10
   tmax <- 100
@@ -48,22 +47,43 @@ get_u_from_s <- function(u_tmp, rnet, infres) {
   return(as.vector(bh))
 }
 
-calculate_modularity_largest_component <- function(network) {
-    # Get the largest connected component
-    components<- igraph::clusters(network, mode= "weak")
-    biggest_cluster_id <- which.max(components$csize)
-    vert_ids <- V(network)[components$membership == biggest_cluster_id]
-    largest_component= igraph::induced_subgraph(network, vert_ids)
+library(igraph)
 
-    # Calculate modularity on the largest component
-    community <- cluster_louvain(largest_component, weights = E(largest_component)$weight)
-    modularity <- modularity(community)
-    
-    # Calculate average module size on the largest component
-    avg_module_size <- mean(sizes(community))
-    
-    return(list(modularity = modularity, avg_module_size = avg_module_size))
+calculate_modularity_largest_component <- function(network) {
+  # Get the largest connected component
+  components <- clusters(network, mode = "weak")
+  biggest_cluster_id <- which.max(components$csize)
+  vert_ids <- V(network)[components$membership == biggest_cluster_id]
+  largest_component <- induced_subgraph(network, vert_ids)
+  # Calculate modularity on the largest component
+  community <- cluster_louvain(largest_component, weights = E(largest_component)$weight)
+  modularity_q <- modularity(community)
+  # Calculate average module size
+  avg_module_size <- mean(sizes(community))
+  # Get membership 
+  mem <- membership(community)
+  net_size <- length(mem)
+  # Create community membership matrix
+  mem_mat <- matrix(0, nr = net_size, nc = net_size)
+  for(i in 1:net_size) {
+    for(j in 1:net_size) {
+      if(mem[i] == mem[j]) {
+        mem_mat[i, j] <- 1
+      }
+    }
+  }
+  diag(mem_mat) <- 0
+  
+  # Create graph from the membership matrix
+  qmat <- graph.adjacency(mem_mat, mode = "undirected", diag = FALSE)
+  # Calculate maximum modularity
+  community_qmat <- cluster_louvain(qmat)
+  modularity_qmax <- modularity(community_qmat)
+  # Calculate relative modularity
+  qrel <- modularity_q / modularity_qmax
+  return(list(modularity = modularity_q, avg_module_size = avg_module_size, max_modularity = modularity_qmax, relative_modularity = qrel))
 }
+
 calculate_modularity_and_avg_module_size <- function(network) {
     community <- cluster_louvain(network, weights= E(network)$weight)
     modularity<- modularity(community)
@@ -76,7 +96,7 @@ extracted_networks <- list()
 for (i in seq_along(all_graphs)) {
   for (n in seq_along(all_graphs[[i]])) {
     graph <- all_graphs[[i]][[n]]
-    if (igraph::vcount(graph) > 17 && igraph::ecount(graph) > 25) {
+    if (igraph::vcount(graph) > 10 && igraph::ecount(graph) > 15) {
       # Add it to the extracted_networks list
       extracted_networks[[paste0(names(all_graphs)[i], "_", n)]] <- graph
     }
@@ -89,7 +109,7 @@ cores <- detectCores()
 cl <- makeCluster(cores)
 registerDoParallel(cl)
 
-clusterExport(cl, c('do_spr', 'get_u_from_s', 'prepseeds', 'calculate_modularity_and_avg_module_size'))
+clusterExport(cl, c('do_spr', 'get_u_from_s', 'prepseeds', 'calculate_modularity_largest_component'))
 t1s.m.1 <- list()
 t1s.r.1 <- list()
 optim_result <- list()
@@ -98,11 +118,17 @@ resultsdfs <- list()
 # Sample networks from larger subset so there is only one of repeated networks
 unique_network_names <- unique(gsub("_\\d+$", "", names(extracted_networks)))
 sampled_networks <- list()
+
 for (network_name in unique_network_names) {
   matching_networks <- grep(paste0("^", network_name), names(extracted_networks), value = TRUE)
-  sampled_network_name <- sample(matching_networks, 1)
-  sampled_networks[[sampled_network_name]] <- extracted_networks[[sampled_network_name]]
+  # Exclude networks with 'sexual' in the title
+  matching_networks <- matching_networks[!grepl("sexual", matching_networks, ignore.case = TRUE)]
+  if (length(matching_networks) > 0) {
+    sampled_network_name <- sample(matching_networks, 1)
+    sampled_networks[[sampled_network_name]] <- extracted_networks[[sampled_network_name]]
+  }
 }
+
 
 # Run simulations
 foreach(network_name = names(sampled_networks)[1:min(length(sampled_networks), 57)]) %do% {
@@ -110,35 +136,47 @@ foreach(network_name = names(sampled_networks)[1:min(length(sampled_networks), 5
   random_network <- erdos.renyi.game(igraph::vcount(network), igraph::ecount(network), type = "gnm")
 
 
-  r_adj= 0.005
+  r_adj= 0.001
   
   t1s.r.1 <- foreach(i = 1:50, .combine = c, .packages = "igraph") %do% {
     res1.r.1 <- do_spr(net = random_network, type = "infected", n_seeds = 1, loc_seeds = 'R', s = r_adj, tmax = 100, returnnets = FALSE, verbose = FALSE, inform.type = "conformist")
     sum(res1.r.1$infected)
   }
 
-opt_result <- stats::optimize(get_u_from_s, interval = c(0, 1), rnet = random_network, infres = t1s.r.1)
+opt_result <- stats::optimize(get_u_from_s, interval = c(0, 1), rnet = random_network, infres = t1s.r.1, inform.type = 'conformist')
 
 # Extract the minimum u value corresponding to the minimum bhs value
 min_u <- opt_result$minimum
 
+#now do it for prop
+allus<- stats::optimize(get_u_from_s, interval = c(0, 1), rnet = random_network, infres = t1s.r.1, inform.type = 'proportional')
+curr_u <- allus$minimum
+
   t1s.r.2 <- foreach(i = 1:50, .combine = c, .packages = "igraph") %do% {
-    res1.r.2 <- do_spr(net = random_network, type = "informed", inform.type = "conformist", min_learn = 0.0001, n_seeds = 1, loc_seeds = 'R', u = min_u, tmax = 100, returnnets = FALSE, verbose = TRUE)
+    res1.r.2 <- do_spr(net = random_network, type = "informed", inform.type = "conformist", min_learn = 0.001, n_seeds = 1, loc_seeds = 'R', u = min_u, tmax = 100, returnnets = FALSE, verbose = TRUE)
     sum(res1.r.2$informed)
   }
   
-  t1s.m.1 <- foreach(i = 1:50, .combine = rbind, .packages = "igraph") %dopar% {
-    res1.m.1 <- do_spr(net = network, type = "both", n_seeds = 1, inform.type = "conformist", min_learn = 0.0001, loc_seeds = 'R', s = r_adj, u = min_u, tmax = 100, returnnets = FALSE, verbose = TRUE)
+  t1s.m.1 <- foreach(i = 1:50, .combine = rbind, .packages = "igraph") %do% {
+    res1.m.1 <- do_spr(net = network, type = "both", n_seeds = 1, inform.type = "conformist", min_learn = 0.001, loc_seeds = 'R', s = r_adj, u = min_u, tmax = 100, returnnets = FALSE, verbose = TRUE)
     data.frame(network = network_name, numinfected = sum(res1.m.1$infected), numinformed = sum(res1.m.1$informed))
   }
 
-  t1s.m.2<- foreach(i = 1:50, .combine = rbind, .packages = "igraph") %dopar% {
-    res1.m.2 <- do_spr(net = network, type = "both", n_seeds = 1, inform.type = "proportional", min_learn = 0.0001, loc_seeds = 'R', s = r_adj, u = min_u, tmax = 100, returnnets = FALSE, verbose = TRUE)
+  t1s.m.2<- foreach(i = 1:50, .combine = rbind, .packages = "igraph") %do% {
+    res1.m.2 <- do_spr(net = network, type = "both", n_seeds = 1, inform.type = "proportional", min_learn = 0.001, loc_seeds = 'R', s = r_adj, u = curr_u, tmax = 100, returnnets = FALSE, verbose = TRUE)
     data.frame(network = network_name, numinfected = sum(res1.m.2$infected), numinformed = sum(res1.m.2$informed))}
 
   modularity_and_avg_module_size <- calculate_modularity_largest_component(network)
   modularity_score <- modularity_and_avg_module_size$modularity
   avg_module_size <- modularity_and_avg_module_size$avg_module_size
+  qrel<- modularity_and_avg_module_size$relative_modularity
+  global_clustering_coefficient <- igraph::transitivity(network, type = "global")
+  network_size <- igraph::vcount(network)
+  degrees <- igraph::degree(network)
+  mean_degree <- mean(degrees)
+  sd_degree <- sd(degrees)
+  avg_path_length <- igraph::mean_distance(network)
+
   
   resultdf <- data.frame(
     infected.mean = mean(t1s.m.1$numinfected, na.rm = TRUE),
@@ -152,7 +190,12 @@ min_u <- opt_result$minimum
     proportional.prop_informed= mean(t1s.m.2$numinformed, na.rm = TRUE) / vcount(network),
     bhs = bhatt_coef(as.vector(t1s.m.1$numinfected), as.vector(t1s.m.1$numinformed)),
     modularity = modularity_score,
+    qrel= qrel,
     avg_module_size = avg_module_size,
+    clustering = global_clustering_coefficient,
+    mean_degree = mean_degree,
+    sd_degree = sd_degree,
+    avg_path_length= avg_path_length,
     chosenu = min_u,
     r_infected_mean = mean(t1s.r.1, na.rm = TRUE),
     r_infected_sd = sd(t1s.r.1, na.rm = TRUE),
