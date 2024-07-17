@@ -1,5 +1,5 @@
-source("generate_networks.R")
-source("spreadfunctions.R")
+source("/Users/nitarawijayatilake/Documents/GitHub/Competing_contagions/Original_BEAS/generate_networks.R")
+source("/Users/nitarawijayatilake/Documents/GitHub/Competing_contagions/Original_BEAS/spreadfunctions_2.R")
 
 #from https://stats.stackexchange.com/questions/78849/measure-for-separability
 bhatt_coef<-function(vec1,vec2){
@@ -37,7 +37,7 @@ tmax=3500
 nseeds=1
 locseeds="R"
 nreps=20
-
+netsize= 200
 thresh=0.75
 thresh_points=c(0.5,0.75,0.9)
 
@@ -59,11 +59,12 @@ foreach(density=densities)%do%{
 	foreach(rep=c(1:nreps))%do%{
 		#generate a random network of certain density
 		start_net=generate_random(N=netsize,e_prob=density)	
+		
 		#for each R0	
 		foreach(R0=R0s)%do%{
 			
 			#if output file already exists we can skip this			if(file.exists(file.path(outputdir,paste(density,rep,R0,".csv",sep="_"),fsep="\\"))){
-				cat(paste("skip",density,rep,R0,"\n"))
+				#cat(paste("skip",density,rep,R0,"\n"))
 
 				return()
 			}
@@ -74,12 +75,12 @@ foreach(density=densities)%do%{
 			
 			
 			#Caclculate r
-			rs=0/((mean(degree(start_net)^2)-mean(degree(start_net)))/mean(degree(start_net)))
+			rs=1.5/((mean(degree(start_net)^2)-mean(degree(start_net)))/mean(degree(start_net)))
 			#calculate gamma (r_adj)
 			r_adj<-1-(1-rs)^(1/t_R0)
 			
 			#generate distribution of infection times for this network, at this r0
-			t1s.r.1=foreach(i=1:50,.combine=c,.packages="igraph")%dopar%{
+			t1s.r.1=foreach(i=1:50,.combine=c,.packages="igraph")%do%{
 				res1.r.1<-do_spr(net=start_net,type="infected",n_seeds=nseeds,loc_seeds=locseeds,s=r_adj,thresh=0.75,tmax=tmax,returnnets=F,verbose=F)
   				sort(res1.r.1$wheninfected,na.last=TRUE)[thresh_point]
 			}
@@ -91,7 +92,7 @@ foreach(density=densities)%do%{
 			curr_u=allus$u[allus$bhs==min(allus$bhs)][1]
 			
 			#do information spread through random network using this u
-			t1s.r.2=foreach(i=1:50,.combine=c,.packages="igraph")%dopar%{
+			t1s.r.2=foreach(i=1:50,.combine=c,.packages="igraph")%do%{
 				res1.r.2<-do_spr(net=start_net,type="informed",inform.type="conformist",min_learn=minlearn,thr_steep=thrsteep,n_seeds=nseeds,loc_seeds=locseeds,u=curr_u,thresh=0.75,tmax=tmax,returnnets=F,verbose=F)
   				sort(res1.r.2$wheninformed,na.last=TRUE)[thresh_point]
 			}
@@ -111,7 +112,7 @@ foreach(density=densities)%do%{
 				V(m)$names=1:netsize
 				
 				#simulate spread of disease and information 50 times
-				t1s.m.1=foreach(i=1:50,.combine=rbind,.packages="igraph")%dopar%{
+				t1s.m.1=foreach(i=1:50,.combine=rbind,.packages="igraph")%do%{
 					res1.m.1=do_spr(net=m,type="both",n_seeds=nseeds,inform.type="conformist",min_learn=minlearn,thr_steep=thrsteep,loc_seeds=locseeds,s=r_adj,u=curr_u,tmax=tmax,returnnets=F,verbose=F)
 					#get when spreads reached threshold points
 					do.call(rbind,lapply(thresh_points,function(x){
@@ -144,7 +145,6 @@ foreach(density=densities)%do%{
 
 			write.csv(allresultdf,file.path(outputdir,paste(density,rep,R0,".csv",sep="_"),fsep="\\"),row.names=F)
 
-			T
+			
 		}	
 	}			
-}			

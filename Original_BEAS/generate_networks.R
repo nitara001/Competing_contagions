@@ -124,4 +124,3 @@ generate_modular2<-function(in_net,N,n_groups=10,max_dens,Qrel=0.5,style=c("bm",
   
 } #end function
 
-plot(R1_infection_results$Num_Infected_at_tmax, R1_infection_results$Modularity)

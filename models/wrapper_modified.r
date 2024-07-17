@@ -1,5 +1,3 @@
-source("C:\\Users\\s2607536\\OneDrive - University of Edinburgh\\Code\\BEAS Code implementation\\Original_BEAS\\spreadfunctions_2.R")
-
 
 #"C:/Users/s2607536/AppData/Local/Programs/R/R-43~1.2/bin/R.exe"
 ##----------------------------------------------
@@ -28,7 +26,7 @@ get_u_from_s <- function(u_tmp, rnet, infres, inform.type) {
   loc_seed <- "R"
   min_learn <- 0.001
   thr_steep <- 10
-  tmax <- 100
+  tmax <- 125
   netsize= igraph::V(rnet)
   
   t_tmps <- foreach(i = 1:50, .combine = c, .packages = "igraph") %dopar% {
@@ -47,7 +45,7 @@ get_u_from_s <- function(u_tmp, rnet, infres, inform.type) {
   return(as.vector(bh))
 }
 
-library(igraph)
+
 
 calculate_modularity_largest_component <- function(network) {
   # Get the largest connected component
@@ -96,7 +94,7 @@ extracted_networks <- list()
 for (i in seq_along(all_graphs)) {
   for (n in seq_along(all_graphs[[i]])) {
     graph <- all_graphs[[i]][[n]]
-    if (igraph::vcount(graph) > 10 && igraph::ecount(graph) > 15) {
+    if (igraph::vcount(graph) > 15 && igraph::ecount(graph) > 10) {
       # Add it to the extracted_networks list
       extracted_networks[[paste0(names(all_graphs)[i], "_", n)]] <- graph
     }
@@ -136,10 +134,10 @@ foreach(network_name = names(sampled_networks)[1:min(length(sampled_networks), 5
   random_network <- erdos.renyi.game(igraph::vcount(network), igraph::ecount(network), type = "gnm")
 
 
-  r_adj= 0.001
+  r_adj= 0.003
   
   t1s.r.1 <- foreach(i = 1:50, .combine = c, .packages = "igraph") %do% {
-    res1.r.1 <- do_spr(net = random_network, type = "infected", n_seeds = 1, loc_seeds = 'R', s = r_adj, tmax = 100, returnnets = FALSE, verbose = FALSE, inform.type = "conformist")
+    res1.r.1 <- do_spr(net = random_network, type = "infected", n_seeds = 1, loc_seeds = 'R', s = r_adj, tmax = 125, returnnets = FALSE, verbose = FALSE, inform.type = "conformist")
     sum(res1.r.1$infected)
   }
 
@@ -153,18 +151,18 @@ allus<- stats::optimize(get_u_from_s, interval = c(0, 1), rnet = random_network,
 curr_u <- allus$minimum
 
   t1s.r.2 <- foreach(i = 1:50, .combine = c, .packages = "igraph") %do% {
-    res1.r.2 <- do_spr(net = random_network, type = "informed", inform.type = "conformist", min_learn = 0.001, n_seeds = 1, loc_seeds = 'R', u = min_u, tmax = 100, returnnets = FALSE, verbose = TRUE)
+    res1.r.2 <- do_spr(net = random_network, type = "informed", inform.type = "conformist", min_learn = 0.001, n_seeds = 1, loc_seeds = 'R', u = min_u, tmax = 125, returnnets = FALSE, verbose = TRUE)
     sum(res1.r.2$informed)
   }
   
   t1s.m.1 <- foreach(i = 1:50, .combine = rbind, .packages = "igraph") %do% {
-    res1.m.1 <- do_spr(net = network, type = "both", n_seeds = 1, inform.type = "conformist", min_learn = 0.001, loc_seeds = 'R', s = r_adj, u = min_u, tmax = 100, returnnets = FALSE, verbose = TRUE)
+    res1.m.1 <- do_spr(net = network, type = "both", n_seeds = 1, inform.type = "conformist", min_learn = 0.001, loc_seeds = 'R', s = r_adj, u = min_u, tmax = 125, returnnets = FALSE, verbose = TRUE)
     data.frame(network = network_name, numinfected = sum(res1.m.1$infected), numinformed = sum(res1.m.1$informed))
   }
 
-  t1s.m.2<- foreach(i = 1:50, .combine = rbind, .packages = "igraph") %do% {
-    res1.m.2 <- do_spr(net = network, type = "both", n_seeds = 1, inform.type = "proportional", min_learn = 0.001, loc_seeds = 'R', s = r_adj, u = curr_u, tmax = 100, returnnets = FALSE, verbose = TRUE)
-    data.frame(network = network_name, numinfected = sum(res1.m.2$infected), numinformed = sum(res1.m.2$informed))}
+ # t1s.m.2<- foreach(i = 1:50, .combine = rbind, .packages = "igraph") %do% {
+   # res1.m.2 <- do_spr(net = network, type = "both", n_seeds = 1, inform.type = "proportional", min_learn = 0.001, loc_seeds = 'R', s = r_adj, u = curr_u, tmax = 200, returnnets = FALSE, verbose = TRUE)
+   # data.frame(network = network_name, numinfected = sum(res1.m.2$infected), numinformed = sum(res1.m.2$informed))}
 
   modularity_and_avg_module_size <- calculate_modularity_largest_component(network)
   modularity_score <- modularity_and_avg_module_size$modularity
@@ -185,9 +183,9 @@ curr_u <- allus$minimum
     conformist.informed.mean = mean(t1s.m.1$numinformed, na.rm = TRUE),
     conformist.informed.sd = sd(t1s.m.1$numinformed, na.rm = TRUE),
     conformist.prop_informed=  mean(t1s.m.1$numinformed, na.rm = TRUE) / vcount(network),
-    proportional.informed.mean=  mean(t1s.m.2$numinformed, na.rm = TRUE),
-    proportional.informed.sd =  sd(t1s.m.2$numinformed, na.rm = TRUE),
-    proportional.prop_informed= mean(t1s.m.2$numinformed, na.rm = TRUE) / vcount(network),
+    #proportional.informed.mean=  mean(t1s.m.2$numinformed, na.rm = TRUE),
+    #proportional.informed.sd =  sd(t1s.m.2$numinformed, na.rm = TRUE),
+    #proportional.prop_informed= mean(t1s.m.2$numinformed, na.rm = TRUE) / vcount(network),
     bhs = bhatt_coef(as.vector(t1s.m.1$numinfected), as.vector(t1s.m.1$numinformed)),
     modularity = modularity_score,
     qrel= qrel,
@@ -207,10 +205,9 @@ curr_u <- allus$minimum
   resultsdfs[[network_name]] <- resultdf
 }
 
-final_resultdf <- do.call(rbind, resultsdfs)
+new_results <- do.call(rbind, resultsdfs)
 
 # Clean up parallel backend
 stopCluster(cl)
 
 # Save results
-write.csv(final_resultdf, "C:\\Users\\s2607536\\OneDrive - University of Edinburgh\\Code\\BEAS Code implementation\\final_results.csv")
