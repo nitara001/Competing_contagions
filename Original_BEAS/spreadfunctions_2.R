@@ -28,7 +28,7 @@
 #returnnets: return a list of network objects if true, otherwise return a dataframe of when individuals became infected/informed
 #verbose: show progress bar, give messages.
 library(igraph)
-do_spr<-function(net,type=c("both","infected","informed"),n_seeds=1,loc_seeds=c("R","CL"),s,u,tmax,thresh=NA,infect.limit=NA,inform.limit=NA,inform.type=c("proportional","conformist"),min_learn=0.001,thr_steep=10,weighted=F,recovery=F,recoverytime=1,recoverprob=1,death=F,deathtime=1,deathprob=0.5,immune=F,immunetime=1,immuneprob=0.5,immuneendprob=0.5,returnnets=T,verbose=T){
+do_spr<-function(net,type=c("both","infected","informed"),n_seeds=1,loc_seeds=c("R","CL"),s,u,tmax,thresh=NA,infect.limit=NA,inform.limit=NA,inform.type=c("proportional","conformist"),min_learn=0.001,thr_steep=10,weighted=F,recovery=F,recoverytime=100,recoverprob=NA,death=F,deathtime=1,deathprob=NA,immune=F,immunetime=1,immuneprob=NA,immuneendprob=NA,returnnets=F,verbose=T){
   N=length(V(net))
   
   if(!is.na(thresh)){
