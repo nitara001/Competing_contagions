@@ -215,4 +215,4 @@ informed_df <- new_results %>%
   rename(response = t1s.m.1_informed)
 
 combined_df <- bind_rows(infected_df, informed_df)
-
+combined_df$outbreak_proportion<- (combined_df$response) / (combined_df$network_size)
