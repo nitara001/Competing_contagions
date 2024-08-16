@@ -86,8 +86,8 @@ extracted_networks <- list()
 for (i in seq_along(all_graphs)) {
   for (n in seq_along(all_graphs[[i]])) {
     graph <- all_graphs[[i]][[n]]
-    if (igraph::vcount(graph) > 15 && igraph::ecount(graph) > 10) {
-      # Add it to the extracted_networks list
+    if (igraph::vcount(graph) > 15 && igraph::ecount(graph) > 10 && igraph::is_connected(graph)) {
+      # Add it to the extracted_networks list only if the graph is connected
       extracted_networks[[paste0(names(all_graphs)[i], "_", n)]] <- graph
     }
   }
