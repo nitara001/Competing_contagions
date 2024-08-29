@@ -4,6 +4,7 @@ library(mgcv)
 library(marginaleffects)
 library(sjPlot)
 library(viridis)
+library(lme4)
 #check for correlations between variables
 
 numeric_columns <- sapply(combined_df, is.numeric)
@@ -12,7 +13,7 @@ cor(numeric_df, use = "complete.obs")
 
 combined_df$network <- as.factor(combined_df$network)
 
-model_random <- lmer(outbreak_proportion ~ type * (modularity + avg_module_size + avg_path_length + density) + (1| network), data = combined_df)
+model_random <- lmer(outbreak_proportion ~ type * (modularity + avg_module_size + avg_path_length ) + (1| network), data = combined_df)
 summary(model_random)
 ranef(model_random)
 anova(model_random)

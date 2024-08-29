@@ -2,7 +2,6 @@
 library(igraph)
 
 # Define the top-level folder containing the subfolders
-top_level_dir <- "/Users/nitarawijayatilake/Documents/PhD!/asnr-master/Networks"
 
 # List all subfolders and sub-subfolders
 all_subfolders <- list.dirs(top_level_dir, full.names = TRUE, recursive = TRUE)

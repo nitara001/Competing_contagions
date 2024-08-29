@@ -86,7 +86,7 @@ extracted_networks <- list()
 for (i in seq_along(all_graphs)) {
   for (n in seq_along(all_graphs[[i]])) {
     graph <- all_graphs[[i]][[n]]
-    if (igraph::vcount(graph) > 15 && igraph::ecount(graph) > 10 && igraph::is_connected(graph)) {
+    if (igraph::vcount(graph) > 10 &&  igraph::is_connected(graph)) {
       # Add it to the extracted_networks list only if the graph is connected
       extracted_networks[[paste0(names(all_graphs)[i], "_", n)]] <- graph
     }
@@ -120,12 +120,16 @@ for (network_name in unique_network_names) {
 
 ##---------------------------------------------------------------------------------------------------------------------------------------------------
 # Run simulations
-foreach(network_name = names(sampled_networks)[1:min(length(sampled_networks))]) %do% {
+foreach(network_name = names(sampled_networks)[1:min(length(sampled_networks),5)]) %do% {
   network <- sampled_networks[[network_name]]
   random_network <- erdos.renyi.game(igraph::vcount(network), igraph::ecount(network), type = "gnm")
 
 
   r_adj= 0.003
+ # t_R0=100
+ # rs=1.5/((mean(degree(network)^2)-mean(degree(network)))/mean(degree(network)))
+			#calculate gamma (r_adj)
+			#r_adj<-1-(1-rs)^(1/t_R0)
   
   t1s.r.1 <- foreach(i = 1:50, .combine = c, .packages = "igraph") %do% {
     res1.r.1 <- do_spr(net = random_network, type = "infected", n_seeds = 1, loc_seeds = 'R', s = r_adj, tmax = 100, returnnets = FALSE, verbose = FALSE, inform.type = "conformist")
@@ -196,7 +200,9 @@ min_u <- opt_result$minimum
 }
 
 new_results <- do.call(rbind, resultsdfs)
-
+new_results$network <- rownames(new_results)
+# Move 'network' column to the first position
+new_results <- new_results[, c("network", setdiff(names(new_results), "network"))]
 # Clean up parallel backend
 stopCluster(cl)
 
@@ -215,4 +221,7 @@ informed_df <- new_results %>%
   rename(response = t1s.m.1_informed)
 
 combined_df <- bind_rows(infected_df, informed_df)
+combined_df$network_size<- as.numeric(combined_df$network_size)
+combined_df$response<- as.numeric(combined_df$response)
 combined_df$outbreak_proportion<- (combined_df$response) / (combined_df$network_size)
+
