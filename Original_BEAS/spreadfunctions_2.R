@@ -191,7 +191,7 @@ do_spr<-function(net,type=c("both","infected","informed"),n_seeds=1,loc_seeds=c(
   if(returnnets){
     return(nets)
   }else{
-    df=as_data_frame(net,"vertices")
+    df <- igraph::as_data_frame(net, "vertices")
     return(df[,colnames(df)!="timestep"])
   }
 }
