@@ -2,10 +2,11 @@
 library(igraph)
 
 # Define the top-level folder containing the subfolders
+top_level_dir<- "/Users/nitarawijayatilake/Documents/PhD!/asnr-master/Networks" #change file directory
 
 # List all subfolders and sub-subfolders
 all_subfolders <- list.dirs(top_level_dir, full.names = TRUE, recursive = TRUE)
-
+all_subfolders
 # Create a list to store subfolder names and their respective graphs
 all_graphs <- list()
 
@@ -23,3 +24,15 @@ for (sub in all_subfolders) {
   all_graphs[[subfolder_name]] <- subfolder_graphs
 }
 
+##-------------------------------------------------------------------------------------------------------------------
+#extract networks from asnr and do filtering
+extracted_networks <- list()
+for (i in seq_along(all_graphs)) {
+  for (n in seq_along(all_graphs[[i]])) {
+    graph <- all_graphs[[i]][[n]]
+    if (igraph::vcount(graph) > 10 &&  igraph::is_connected(graph)) {
+      # Add it to the extracted_networks list only if the graph is connected
+      extracted_networks[[paste0(names(all_graphs)[i], "_", n)]] <- graph
+    }
+  }
+}
