@@ -13,7 +13,7 @@ cor(numeric_df, use = "complete.obs")
 
 combined_df$network <- as.factor(combined_df$network)
 
-model_random <- lmer(outbreak_proportion ~ type * (modularity + avg_module_size + avg_path_length ) + (1| network), data = combined_df)
+model_random <- lmer(time ~ type * (modularity + avg_module_size + avg_path_length ) + (1| network), data = combined_df)
 summary(model_random)
 ranef(model_random)
 anova(model_random)
@@ -234,8 +234,7 @@ ggplot(final_resultdf, aes(x = avg_module_size)) +
 
 ###
 
-summary(mgcv::gam(prop_infected ~ s(modularity) + s(avg_path_length) + s(clustering) + s(avg_module_size)+density, data = final_resultdf_filtered))
-summary(mgcv::gam(conformist.prop_informed ~ s(modularity) + s(avg_path_length) + s(clustering) + s(avg_module_size)+density, data = final_resultdf))
+summary(mgcv::gam(time ~ s(modularity) +density, data = combined_df))
 
 model<- lm(response ~ features|network, data= combined_df)
 summary(model)
