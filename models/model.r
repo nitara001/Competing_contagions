@@ -123,7 +123,7 @@ opt_result <- list()
 resultsdfs <- list()
 set.seed(123) 
 
-foreach(network_name = names(largest_components)[1:min(length(largest_components), 100)]) %do% {
+foreach(network_name = names(largest_components)[201:min(length(largest_components), 300)]) %do% {
   network <- largest_components[[network_name]]
   random_network <- erdos.renyi.game(igraph::vcount(network), igraph::ecount(network), type = "gnm")
 
@@ -297,7 +297,7 @@ informed_df <- new_results %>%
 
 combined_df<- bind_rows(infected_df, informed_df)
 View(combined_df)
-write.csv(combined_df, 'C:\\Users\\s2607536\\Documents\\GitHub\\Competing_contagions\\results\\newest_results2.csv')
+write.csv(combined_df, 'C:\\Users\\s2607536\\Documents\\GitHub\\Competing_contagions\\results\\newest_results3.csv')
 
 
 

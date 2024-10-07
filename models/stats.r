@@ -13,7 +13,7 @@ cor(numeric_df, use = "complete.obs")
 
 combined_df$network <- as.factor(combined_df$network)
 
-model_random <- lmer(time ~ type * (modularity + avg_module_size + avg_path_length ) + (1| network), data = combined_df)
+model_random <- lmer(time ~ type * (modularity + avg_module_size) + (1| network), data = data)
 summary(model_random)
 ranef(model_random)
 anova(model_random)
@@ -274,6 +274,8 @@ ggsave(filename = "/Users/nitarawijayatilake/Documents/GitHub/Competing_contagio
 
 
 
-gam_model <- gam(response ~ type * modularity + s(avg_module_size) + clustering + avg_path_length + density + s(network, bs = "re"), data = combined_df)
-summary(gam_model)
-plot.gam(gam_model, select=3)
+gam_model <- gam(time ~ s(modularity)  + density , data = data)
+
+
+##model building
+summary(lm(time ~ (density * modularity) * type, data = data))
