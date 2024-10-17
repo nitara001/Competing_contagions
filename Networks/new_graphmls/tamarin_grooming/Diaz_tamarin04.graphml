@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d1" for="edge" attr.name="weight" attr.type="double"/>
+<key id="d0" for="node" attr.name="Infant carrying time in percentage" attr.type="double"/>
+<graph edgedefault="undirected"><node id="SA">
+  <data key="d0">nan</data>
+</node>
+<node id="GA">
+  <data key="d0">4.672618806</data>
+</node>
+<node id="GE">
+  <data key="d0">7.546516269</data>
+</node>
+<node id="PA">
+  <data key="d0">7.8065475</data>
+</node>
+<node id="PHI">
+  <data key="d0">9.339505926</data>
+</node>
+<node id="GI">
+  <data key="d0">2.508928612</data>
+</node>
+<node id="JO">
+  <data key="d0">0.22089946</data>
+</node>
+<node id="NI">
+  <data key="d0">1.10769414</data>
+</node>
+<node id="MI">
+  <data key="d0">8.332342744</data>
+</node>
+<node id="SU">
+  <data key="d0">18.31712833</data>
+</node>
+<node id="RA">
+  <data key="d0">0.210648149</data>
+</node>
+<node id="CHE">
+  <data key="d0">nan</data>
+</node>
+<node id="DA">
+  <data key="d0">nan</data>
+</node>
+<edge source="SA" target="GA">
+  <data key="d1">0.5859375</data>
+</edge>
+<edge source="SA" target="GE">
+  <data key="d1">0.1171875</data>
+</edge>
+<edge source="SA" target="PA">
+  <data key="d1">0.05859375</data>
+</edge>
+<edge source="SA" target="GI">
+  <data key="d1">0.29296875</data>
+</edge>
+<edge source="SA" target="JO">
+  <data key="d1">0.234375</data>
+</edge>
+<edge source="SA" target="NI">
+  <data key="d1">0.52734375</data>
+</edge>
+<edge source="SA" target="SU">
+  <data key="d1">0.17578125</data>
+</edge>
+<edge source="SA" target="RA">
+  <data key="d1">0.29296875</data>
+</edge>
+<edge source="SA" target="DA">
+  <data key="d1">0.1171875</data>
+</edge>
+<edge source="GA" target="PA">
+  <data key="d1">0.17578125</data>
+</edge>
+<edge source="GA" target="GI">
+  <data key="d1">0.05859375</data>
+</edge>
+<edge source="GA" target="NI">
+  <data key="d1">0.1171875</data>
+</edge>
+<edge source="GA" target="SU">
+  <data key="d1">0.05859375</data>
+</edge>
+<edge source="GA" target="RA">
+  <data key="d1">0.1171875</data>
+</edge>
+<edge source="GE" target="PA">
+  <data key="d1">0.05859375</data>
+</edge>
+<edge source="GE" target="PHI">
+  <data key="d1">0.1171875</data>
+</edge>
+<edge source="GE" target="JO">
+  <data key="d1">0.234375</data>
+</edge>
+<edge source="GE" target="NI">
+  <data key="d1">0.05859375</data>
+</edge>
+<edge source="GE" target="SU">
+  <data key="d1">0.17578125</data>
+</edge>
+<edge source="GE" target="RA">
+  <data key="d1">0.3515625</data>
+</edge>
+<edge source="PA" target="GI">
+  <data key="d1">0.05859375</data>
+</edge>
+<edge source="PA" target="JO">
+  <data key="d1">0.1171875</data>
+</edge>
+<edge source="PA" target="SU">
+  <data key="d1">0.52734375</data>
+</edge>
+<edge source="PHI" target="JO">
+  <data key="d1">0.29296875</data>
+</edge>
+<edge source="PHI" target="NI">
+  <data key="d1">0.05859375</data>
+</edge>
+<edge source="PHI" target="MI">
+  <data key="d1">0.234375</data>
+</edge>
+<edge source="PHI" target="SU">
+  <data key="d1">0.234375</data>
+</edge>
+<edge source="PHI" target="RA">
+  <data key="d1">0.05859375</data>
+</edge>
+<edge source="GI" target="NI">
+  <data key="d1">0.234375</data>
+</edge>
+<edge source="JO" target="MI">
+  <data key="d1">0.3515625</data>
+</edge>
+<edge source="JO" target="SU">
+  <data key="d1">0.234375</data>
+</edge>
+<edge source="JO" target="RA">
+  <data key="d1">0.17578125</data>
+</edge>
+<edge source="JO" target="CHE">
+  <data key="d1">0.05859375</data>
+</edge>
+<edge source="NI" target="MI">
+  <data key="d1">0.05859375</data>
+</edge>
+<edge source="NI" target="SU">
+  <data key="d1">0.234375</data>
+</edge>
+<edge source="SU" target="RA">
+  <data key="d1">0.1171875</data>
+</edge>
+</graph></graphml>

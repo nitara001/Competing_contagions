@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d0" for="edge" attr.name="weight" attr.type="double"/>
+<graph edgedefault="undirected"><node id="GDF042"/>
+<node id="GDM002"/>
+<node id="GDM005"/>
+<node id="GDM006"/>
+<node id="GDM007"/>
+<node id="GDF007"/>
+<edge source="GDF042" target="GDF042">
+  <data key="d0">1.0</data>
+</edge>
+<edge source="GDF042" target="GDM002">
+  <data key="d0">0.73</data>
+</edge>
+<edge source="GDF042" target="GDM005">
+  <data key="d0">0.36</data>
+</edge>
+<edge source="GDF042" target="GDM006">
+  <data key="d0">0.17</data>
+</edge>
+<edge source="GDF042" target="GDM007">
+  <data key="d0">0.2</data>
+</edge>
+<edge source="GDM002" target="GDM002">
+  <data key="d0">1.0</data>
+</edge>
+<edge source="GDM002" target="GDM005">
+  <data key="d0">0.26</data>
+</edge>
+<edge source="GDM002" target="GDM006">
+  <data key="d0">0.11</data>
+</edge>
+<edge source="GDM002" target="GDM007">
+  <data key="d0">0.22</data>
+</edge>
+<edge source="GDM002" target="GDF007">
+  <data key="d0">0.42</data>
+</edge>
+<edge source="GDM005" target="GDM005">
+  <data key="d0">1.0</data>
+</edge>
+<edge source="GDM005" target="GDM006">
+  <data key="d0">0.12</data>
+</edge>
+<edge source="GDM005" target="GDM007">
+  <data key="d0">0.33</data>
+</edge>
+<edge source="GDM005" target="GDF007">
+  <data key="d0">0.35</data>
+</edge>
+<edge source="GDM006" target="GDM006">
+  <data key="d0">1.0</data>
+</edge>
+<edge source="GDM006" target="GDM007">
+  <data key="d0">0.24</data>
+</edge>
+<edge source="GDM006" target="GDF007">
+  <data key="d0">0.45</data>
+</edge>
+<edge source="GDM007" target="GDM007">
+  <data key="d0">1.0</data>
+</edge>
+<edge source="GDM007" target="GDF007">
+  <data key="d0">0.2</data>
+</edge>
+<edge source="GDF007" target="GDF007">
+  <data key="d0">1.0</data>
+</edge>
+</graph></graphml>
