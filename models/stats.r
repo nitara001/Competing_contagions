@@ -6,14 +6,15 @@ library(sjPlot)
 library(viridis)
 library(lme4)
 #check for correlations between variables
-
-numeric_columns <- sapply(combined_df, is.numeric)
-numeric_df <- combined_df[, numeric_columns]
+data<- read.csv("C:\\Users\\s2607536\\Documents\\GitHub\\Competing_contagions\\results\\result.csv")
+numeric_columns <- sapply(data, is.numeric)
+numeric_df <- data[, numeric_columns]
 cor(numeric_df, use = "complete.obs")
 
-combined_df$network <- as.factor(combined_df$network)
+data$network <- as.factor(data$network)
 
-model_random <- lmer(time ~ type * (modularity + avg_module_size) + (1| network), data = data)
+model_random <- lm(time ~ type * (modularity.x + density + avg_module_size + module_size_variation), data = data)
+
 summary(model_random)
 ranef(model_random)
 anova(model_random)

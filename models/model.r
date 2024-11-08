@@ -123,7 +123,7 @@ opt_result <- list()
 resultsdfs <- list()
 set.seed(123) 
 
-foreach(network_name = names(largest_components)[301:min(length(largest_components), 400)]) %do% {
+foreach(network_name = names(largest_components)[1:min(length(missing_networks), 10)]) %do% {
   network <- largest_components[[network_name]]
   random_network <- erdos.renyi.game(igraph::vcount(network), igraph::ecount(network), type = "gnm")
 
@@ -152,7 +152,6 @@ foreach(network_name = names(largest_components)[301:min(length(largest_componen
     valid_times <- res1.r.1$wheninfected[res1.r.1$wheninfected > 0]
     min_time <- sort(valid_times)[cumsum(res1.r.1$infected[res1.r.1$wheninfected > 0]) >= 0.75 * total_nodes][1]
 
-    # Return the result or a message if the threshold was never reached
     if (!is.na(min_time) && is.finite(min_time)) {
       min_time
     } else {
@@ -230,6 +229,7 @@ foreach(network_name = names(largest_components)[301:min(length(largest_componen
       min_time
     } else {
       paste("75% informed threshold never reached; only", total_informed/total_nodes, "informed")
+    
     }
   } 
 
@@ -239,7 +239,6 @@ foreach(network_name = names(largest_components)[301:min(length(largest_componen
     min_time_75_informed = min_time_75_informed
   )
 }
-
 
   # Calculations for network properties
   modularity_and_avg_module_size <- calculate_modularity(network)
@@ -277,7 +276,6 @@ foreach(network_name = names(largest_components)[301:min(length(largest_componen
 }
 
 
-
 new_results <- do.call(rbind, resultsdfs)
 new_results$network <- rownames(new_results)
 new_results <- new_results[, c("network", setdiff(names(new_results), "network"))]
@@ -300,4 +298,31 @@ View(combined_df)
 write.csv(combined_df, 'C:\\Users\\s2607536\\Documents\\GitHub\\Competing_contagions\\results\\newest_results4.csv')
 
 
+##add any network features that were missed
 
+calculate_modularity <- function(network) {
+  # Community detection
+  community <- cluster_louvain(network, weights = E(network)$weight)
+  modularity_q <- modularity(community)
+  community_sizes <- sizes(community)
+  avg_module_size_raw <- mean(community_sizes)            # Average module size (raw)
+  module_size_variation <- max(community_sizes) - min(community_sizes)  # Variation in module size
+  
+  return(list(
+    modularity = modularity_q, 
+    avg_module_size_raw = avg_module_size_raw,
+    module_size_variation = module_size_variation
+  ))
+}
+
+network_stats <- data.frame()
+for (network_name in unique(data$network)) {
+  if (network_name %in% names(largest_components)) {
+    network <- largest_components[[network_name]]
+    stats <- calculate_modularity(network)
+    stats$network <- network_name  # Add network name to results
+    network_stats <- rbind(network_stats, as.data.frame(stats))
+  }
+}
+
+data <- left_join(data, network_stats, by = "network")
