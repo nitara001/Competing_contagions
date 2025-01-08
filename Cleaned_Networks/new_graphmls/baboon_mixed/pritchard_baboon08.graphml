@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d0" for="edge" attr.name="weight" attr.type="double"/>
+  <graph edgedefault="undirected">
+    <node id="bd"/>
+    <node id="cb"/>
+    <node id="ct"/>
+    <node id="ds"/>
+    <node id="ed"/>
+    <node id="ev"/>
+    <node id="gw"/>
+    <node id="id"/>
+    <node id="jr"/>
+    <node id="lb"/>
+    <node id="lh"/>
+    <node id="ll"/>
+    <node id="ma"/>
+    <node id="nu"/>
+    <node id="nv"/>
+    <node id="ov"/>
+    <node id="pq"/>
+    <node id="qn"/>
+    <node id="qo"/>
+    <node id="rc"/>
+    <node id="va"/>
+    <node id="wb"/>
+    <node id="wr"/>
+    <node id="ws"/>
+    <node id="xb"/>
+    <node id="xd"/>
+    <node id="xu"/>
+    <node id="zk"/>
+    <edge source="bd" target="id">
+      <data key="d0">0.008928571</data>
+    </edge>
+    <edge source="bd" target="lh">
+      <data key="d0">0.017857143</data>
+    </edge>
+    <edge source="bd" target="ll">
+      <data key="d0">0.016168041</data>
+    </edge>
+    <edge source="bd" target="nu">
+      <data key="d0">0.008928571</data>
+    </edge>
+    <edge source="bd" target="wr">
+      <data key="d0">0.007194245</data>
+    </edge>
+    <edge source="bd" target="xu">
+      <data key="d0">0.007246377</data>
+    </edge>
+    <edge source="cb" target="wb">
+      <data key="d0">0.007235454</data>
+    </edge>
+    <edge source="ct" target="lb">
+      <data key="d0">0.007194676</data>
+    </edge>
+    <edge source="ct" target="lh">
+      <data key="d0">0.007169744</data>
+    </edge>
+    <edge source="ct" target="ll">
+      <data key="d0">0.043614346</data>
+    </edge>
+    <edge source="ct" target="ma">
+      <data key="d0">0.021851555</data>
+    </edge>
+    <edge source="ct" target="pq">
+      <data key="d0">0.007194245</data>
+    </edge>
+    <edge source="ct" target="rc">
+      <data key="d0">0.007283852</data>
+    </edge>
+    <edge source="ct" target="va">
+      <data key="d0">0.007283852</data>
+    </edge>
+    <edge source="ct" target="wr">
+      <data key="d0">0.021582734</data>
+    </edge>
+    <edge source="ds" target="id">
+      <data key="d0">0.014367227</data>
+    </edge>
+    <edge source="ds" target="ov">
+      <data key="d0">0.014096916</data>
+    </edge>
+    <edge source="ds" target="va">
+      <data key="d0">0.007048458</data>
+    </edge>
+    <edge source="ed" target="ma">
+      <data key="d0">0.00727855</data>
+    </edge>
+    <edge source="ed" target="wr">
+      <data key="d0">0.045559256</data>
+    </edge>
+    <edge source="ed" target="xu">
+      <data key="d0">0.015637516</data>
+    </edge>
+    <edge source="ev" target="nu">
+      <data key="d0">0.007052932</data>
+    </edge>
+    <edge source="gw" target="xb">
+      <data key="d0">0.007034905</data>
+    </edge>
+    <edge source="id" target="jr">
+      <data key="d0">0.007246377</data>
+    </edge>
+    <edge source="id" target="nu">
+      <data key="d0">0.007318769</data>
+    </edge>
+    <edge source="id" target="pq">
+      <data key="d0">0.007318769</data>
+    </edge>
+    <edge source="id" target="xb">
+      <data key="d0">0.01434343</data>
+    </edge>
+    <edge source="jr" target="lb">
+      <data key="d0">0.007246377</data>
+    </edge>
+    <edge source="jr" target="lh">
+      <data key="d0">0.007246377</data>
+    </edge>
+    <edge source="jr" target="ov">
+      <data key="d0">0.007246377</data>
+    </edge>
+    <edge source="jr" target="va">
+      <data key="d0">0.014388489</data>
+    </edge>
+    <edge source="lb" target="ll">
+      <data key="d0">0.007194676</data>
+    </edge>
+    <edge source="lb" target="va">
+      <data key="d0">0.007194245</data>
+    </edge>
+    <edge source="lh" target="lh">
+      <data key="d0">0.007169744</data>
+    </edge>
+    <edge source="lh" target="ma">
+      <data key="d0">0.00727855</data>
+    </edge>
+    <edge source="lh" target="qo">
+      <data key="d0">0.007206688</data>
+    </edge>
+    <edge source="lh" target="wb">
+      <data key="d0">0.014339487</data>
+    </edge>
+    <edge source="ll" target="ma">
+      <data key="d0">0.00723947</data>
+    </edge>
+    <edge source="ll" target="nu">
+      <data key="d0">0.007222042</data>
+    </edge>
+    <edge source="ll" target="ov">
+      <data key="d0">0.014350462</data>
+    </edge>
+    <edge source="ll" target="pq">
+      <data key="d0">0.007194245</data>
+    </edge>
+    <edge source="ll" target="va">
+      <data key="d0">0.00723947</data>
+    </edge>
+    <edge source="ll" target="wb">
+      <data key="d0">0.043269359</data>
+    </edge>
+    <edge source="ll" target="wr">
+      <data key="d0">0.007194245</data>
+    </edge>
+    <edge source="ll" target="ws">
+      <data key="d0">0.00723947</data>
+    </edge>
+    <edge source="ll" target="xu">
+      <data key="d0">0.014492754</data>
+    </edge>
+    <edge source="ma" target="nv">
+      <data key="d0">0.00727855</data>
+    </edge>
+    <edge source="ma" target="pq">
+      <data key="d0">0.00727855</data>
+    </edge>
+    <edge source="nu" target="pq">
+      <data key="d0">0.014388489</data>
+    </edge>
+    <edge source="nu" target="qn">
+      <data key="d0">0.009958672</data>
+    </edge>
+    <edge source="nu" target="xd">
+      <data key="d0">0.007222042</data>
+    </edge>
+    <edge source="nv" target="ov">
+      <data key="d0">0.007198388</data>
+    </edge>
+    <edge source="nv" target="xb">
+      <data key="d0">0.035911919</data>
+    </edge>
+    <edge source="nv" target="zk">
+      <data key="d0">0.014255167</data>
+    </edge>
+    <edge source="ov" target="qo">
+      <data key="d0">0.014350462</data>
+    </edge>
+    <edge source="ov" target="wr">
+      <data key="d0">0.007175231</data>
+    </edge>
+    <edge source="ov" target="xu">
+      <data key="d0">0.007175231</data>
+    </edge>
+    <edge source="pq" target="wb">
+      <data key="d0">0.028745195</data>
+    </edge>
+    <edge source="pq" target="ws">
+      <data key="d0">0.021213657</data>
+    </edge>
+    <edge source="pq" target="xb">
+      <data key="d0">0.021515144</data>
+    </edge>
+    <edge source="qn" target="va">
+      <data key="d0">0.009958672</data>
+    </edge>
+    <edge source="qo" target="wr">
+      <data key="d0">0.007194245</data>
+    </edge>
+    <edge source="qo" target="xu">
+      <data key="d0">0.02173913</data>
+    </edge>
+    <edge source="rc" target="ws">
+      <data key="d0">0.007228219</data>
+    </edge>
+    <edge source="rc" target="xb">
+      <data key="d0">0.007171715</data>
+    </edge>
+    <edge source="va" target="xb">
+      <data key="d0">0.007194245</data>
+    </edge>
+    <edge source="wb" target="wr">
+      <data key="d0">0.007194245</data>
+    </edge>
+    <edge source="wb" target="xd">
+      <data key="d0">0.00718365</data>
+    </edge>
+    <edge source="wb" target="xu">
+      <data key="d0">0.02173913</data>
+    </edge>
+    <edge source="wr" target="xu">
+      <data key="d0">0.007246377</data>
+    </edge>
+    <edge source="xb" target="zk">
+      <data key="d0">0.007127584</data>
+    </edge>
+    <edge source="xu" target="zk">
+      <data key="d0">0.007246377</data>
+    </edge>
+    <edge source="zk" target="zk">
+      <data key="d0">0.007127584</data>
+    </edge>
+  </graph>
+</graphml>

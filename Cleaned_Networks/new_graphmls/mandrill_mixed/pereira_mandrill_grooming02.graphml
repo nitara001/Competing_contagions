@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d0" for="edge" attr.name="weight" attr.type="long"/>
+  <graph edgedefault="undirected">
+    <node id="Camila"/>
+    <node id="Tania"/>
+    <node id="Lisala"/>
+    <node id="Limbe"/>
+    <node id="Mirinda"/>
+    <node id="Lolaya"/>
+    <edge source="Camila" target="Tania">
+      <data key="d0">265</data>
+    </edge>
+    <edge source="Camila" target="Lisala">
+      <data key="d0">631</data>
+    </edge>
+    <edge source="Camila" target="Limbe">
+      <data key="d0">1411</data>
+    </edge>
+    <edge source="Camila" target="Mirinda">
+      <data key="d0">49</data>
+    </edge>
+    <edge source="Tania" target="Lisala">
+      <data key="d0">948</data>
+    </edge>
+    <edge source="Tania" target="Limbe">
+      <data key="d0">200</data>
+    </edge>
+    <edge source="Tania" target="Lolaya">
+      <data key="d0">2334</data>
+    </edge>
+    <edge source="Lisala" target="Limbe">
+      <data key="d0">879</data>
+    </edge>
+    <edge source="Lisala" target="Lolaya">
+      <data key="d0">579</data>
+    </edge>
+  </graph>
+</graphml>
