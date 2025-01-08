@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d0" for="edge" attr.name="weight" attr.type="double"/>
+  <graph edgedefault="undirected">
+    <node id="3106"/>
+    <node id="03DA"/>
+    <node id="6305"/>
+    <node id="443B"/>
+    <node id="2317"/>
+    <node id="4B08"/>
+    <node id="6E7F"/>
+    <node id="1F3F"/>
+    <node id="5741"/>
+    <node id="5750"/>
+    <node id="1E4A"/>
+    <node id="3129"/>
+    <node id="3D45"/>
+    <node id="7606"/>
+    <node id="154B"/>
+    <edge source="3106" target="154B">
+      <data key="d0">0.013224633</data>
+    </edge>
+    <edge source="3106" target="3106">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="3106" target="3129">
+      <data key="d0">0.952480549</data>
+    </edge>
+    <edge source="3106" target="6E7F">
+      <data key="d0">0.817637368</data>
+    </edge>
+    <edge source="3106" target="7606">
+      <data key="d0">0.649601968</data>
+    </edge>
+    <edge source="03DA" target="03DA">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="03DA" target="2317">
+      <data key="d0">0.344238587</data>
+    </edge>
+    <edge source="03DA" target="4B08">
+      <data key="d0">0.463799228</data>
+    </edge>
+    <edge source="03DA" target="5741">
+      <data key="d0">0.147651273</data>
+    </edge>
+    <edge source="03DA" target="5750">
+      <data key="d0">0.350569106</data>
+    </edge>
+    <edge source="03DA" target="7606">
+      <data key="d0">0.007146909</data>
+    </edge>
+    <edge source="6305" target="154B">
+      <data key="d0">0.028896331</data>
+    </edge>
+    <edge source="6305" target="1E4A">
+      <data key="d0">0.471264142</data>
+    </edge>
+    <edge source="6305" target="1F3F">
+      <data key="d0">0.859552553</data>
+    </edge>
+    <edge source="6305" target="2317">
+      <data key="d0">0.007584748</data>
+    </edge>
+    <edge source="6305" target="3129">
+      <data key="d0">0.032159111</data>
+    </edge>
+    <edge source="6305" target="3D45">
+      <data key="d0">0.061822531</data>
+    </edge>
+    <edge source="6305" target="6305">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="6305" target="7606">
+      <data key="d0">0.460176624</data>
+    </edge>
+    <edge source="443B" target="443B">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="443B" target="6E7F">
+      <data key="d0">0.012066365</data>
+    </edge>
+    <edge source="2317" target="2317">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="2317" target="4B08">
+      <data key="d0">0.541540264</data>
+    </edge>
+    <edge source="2317" target="5741">
+      <data key="d0">0.555393464</data>
+    </edge>
+    <edge source="2317" target="5750">
+      <data key="d0">0.554966841</data>
+    </edge>
+    <edge source="2317" target="7606">
+      <data key="d0">0.164821354</data>
+    </edge>
+    <edge source="4B08" target="4B08">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="4B08" target="5741">
+      <data key="d0">0.479493765</data>
+    </edge>
+    <edge source="4B08" target="5750">
+      <data key="d0">0.632905334</data>
+    </edge>
+    <edge source="4B08" target="7606">
+      <data key="d0">0.14752246</data>
+    </edge>
+    <edge source="6E7F" target="154B">
+      <data key="d0">0.336740158</data>
+    </edge>
+    <edge source="6E7F" target="3129">
+      <data key="d0">0.609172359</data>
+    </edge>
+    <edge source="6E7F" target="3D45">
+      <data key="d0">0.15907797</data>
+    </edge>
+    <edge source="6E7F" target="6E7F">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="6E7F" target="7606">
+      <data key="d0">0.288921094</data>
+    </edge>
+    <edge source="1F3F" target="1E4A">
+      <data key="d0">0.348524887</data>
+    </edge>
+    <edge source="1F3F" target="1F3F">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="1F3F" target="3129">
+      <data key="d0">0.319356371</data>
+    </edge>
+    <edge source="1F3F" target="3D45">
+      <data key="d0">0.00913242</data>
+    </edge>
+    <edge source="1F3F" target="7606">
+      <data key="d0">0.80700423</data>
+    </edge>
+    <edge source="5741" target="5741">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="5741" target="5750">
+      <data key="d0">0.522825269</data>
+    </edge>
+    <edge source="5741" target="7606">
+      <data key="d0">0.322764101</data>
+    </edge>
+    <edge source="5750" target="5750">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="5750" target="7606">
+      <data key="d0">0.059981256</data>
+    </edge>
+    <edge source="1E4A" target="154B">
+      <data key="d0">0.054278289</data>
+    </edge>
+    <edge source="1E4A" target="1E4A">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="1E4A" target="3129">
+      <data key="d0">0.285446994</data>
+    </edge>
+    <edge source="1E4A" target="3D45">
+      <data key="d0">0.203794754</data>
+    </edge>
+    <edge source="1E4A" target="7606">
+      <data key="d0">0.561446718</data>
+    </edge>
+    <edge source="3129" target="154B">
+      <data key="d0">0.309005686</data>
+    </edge>
+    <edge source="3129" target="3129">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="3129" target="3D45">
+      <data key="d0">0.231426603</data>
+    </edge>
+    <edge source="3129" target="7606">
+      <data key="d0">0.659114561</data>
+    </edge>
+    <edge source="3D45" target="154B">
+      <data key="d0">0.363001813</data>
+    </edge>
+    <edge source="3D45" target="3D45">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="3D45" target="7606">
+      <data key="d0">0.697738745</data>
+    </edge>
+    <edge source="7606" target="154B">
+      <data key="d0">0.349126559</data>
+    </edge>
+    <edge source="7606" target="7606">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="154B" target="154B">
+      <data key="d0">1.0</data>
+    </edge>
+  </graph>
+</graphml>

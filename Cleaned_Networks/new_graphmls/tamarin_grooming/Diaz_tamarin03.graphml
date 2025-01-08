@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d1" for="edge" attr.name="weight" attr.type="double"/>
+  <key id="d0" for="node" attr.name="Infant carrying time in percentage" attr.type="double"/>
+  <graph edgedefault="undirected">
+    <node id="LEO"/>
+    <node id="GAR">
+      <data key="d0">9.45083762</data>
+    </node>
+    <node id="MAR">
+      <data key="d0">25.05401176</data>
+    </node>
+    <node id="MER">
+      <data key="d0">17.12213396</data>
+    </node>
+    <node id="NER">
+      <data key="d0">3.447200185</data>
+    </node>
+    <node id="JA">
+      <data key="d0">1.525132289</data>
+    </node>
+    <node id="LEON"/>
+    <node id="TAR"/>
+    <edge source="LEO" target="GAR">
+      <data key="d1">0.17578125</data>
+    </edge>
+    <edge source="LEO" target="MAR">
+      <data key="d1">0.17578125</data>
+    </edge>
+    <edge source="LEO" target="MER">
+      <data key="d1">0.52734375</data>
+    </edge>
+    <edge source="LEO" target="NER">
+      <data key="d1">0.46875</data>
+    </edge>
+    <edge source="LEO" target="JA">
+      <data key="d1">0.5859375</data>
+    </edge>
+    <edge source="LEO" target="LEON">
+      <data key="d1">0.17578125</data>
+    </edge>
+    <edge source="LEO" target="TAR">
+      <data key="d1">0.29296875</data>
+    </edge>
+    <edge source="GAR" target="MAR">
+      <data key="d1">0.234375</data>
+    </edge>
+    <edge source="GAR" target="MER">
+      <data key="d1">0.05859375</data>
+    </edge>
+    <edge source="GAR" target="JA">
+      <data key="d1">0.17578125</data>
+    </edge>
+    <edge source="MAR" target="MER">
+      <data key="d1">0.99609375</data>
+    </edge>
+    <edge source="MAR" target="NER">
+      <data key="d1">0.3515625</data>
+    </edge>
+    <edge source="MAR" target="JA">
+      <data key="d1">0.29296875</data>
+    </edge>
+    <edge source="MAR" target="TAR">
+      <data key="d1">0.29296875</data>
+    </edge>
+    <edge source="MER" target="JA">
+      <data key="d1">0.05859375</data>
+    </edge>
+    <edge source="MER" target="LEON">
+      <data key="d1">0.17578125</data>
+    </edge>
+    <edge source="MER" target="TAR">
+      <data key="d1">0.3515625</data>
+    </edge>
+    <edge source="NER" target="JA">
+      <data key="d1">0.17578125</data>
+    </edge>
+    <edge source="NER" target="TAR">
+      <data key="d1">0.1171875</data>
+    </edge>
+    <edge source="JA" target="LEON">
+      <data key="d1">0.41015625</data>
+    </edge>
+    <edge source="LEON" target="TAR">
+      <data key="d1">0.99609375</data>
+    </edge>
+  </graph>
+</graphml>

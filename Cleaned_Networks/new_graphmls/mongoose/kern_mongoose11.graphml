@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d0" for="edge" attr.name="weight" attr.type="double"/>
+  <graph edgedefault="undirected">
+    <node id="GGF007"/>
+    <node id="GGF028"/>
+    <node id="GGF029"/>
+    <node id="GGM006"/>
+    <node id="GGM030"/>
+    <node id="GGM031"/>
+    <edge source="GGF007" target="GGF007">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="GGF007" target="GGF028">
+      <data key="d0">0.26</data>
+    </edge>
+    <edge source="GGF007" target="GGF029">
+      <data key="d0">0.23</data>
+    </edge>
+    <edge source="GGF007" target="GGM006">
+      <data key="d0">0.28</data>
+    </edge>
+    <edge source="GGF007" target="GGM030">
+      <data key="d0">0.32</data>
+    </edge>
+    <edge source="GGF007" target="GGM031">
+      <data key="d0">0.13</data>
+    </edge>
+    <edge source="GGF028" target="GGF028">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="GGF028" target="GGF029">
+      <data key="d0">0.27</data>
+    </edge>
+    <edge source="GGF028" target="GGM006">
+      <data key="d0">0.33</data>
+    </edge>
+    <edge source="GGF028" target="GGM030">
+      <data key="d0">0.57</data>
+    </edge>
+    <edge source="GGF028" target="GGM031">
+      <data key="d0">0.13</data>
+    </edge>
+    <edge source="GGF029" target="GGF029">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="GGF029" target="GGM006">
+      <data key="d0">0.66</data>
+    </edge>
+    <edge source="GGF029" target="GGM030">
+      <data key="d0">0.41</data>
+    </edge>
+    <edge source="GGF029" target="GGM031">
+      <data key="d0">0.1</data>
+    </edge>
+    <edge source="GGM006" target="GGM006">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="GGM006" target="GGM030">
+      <data key="d0">0.03</data>
+    </edge>
+    <edge source="GGM006" target="GGM031">
+      <data key="d0">0.11</data>
+    </edge>
+    <edge source="GGM030" target="GGM030">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="GGM030" target="GGM031">
+      <data key="d0">0.11</data>
+    </edge>
+    <edge source="GGM031" target="GGM031">
+      <data key="d0">1.0</data>
+    </edge>
+  </graph>
+</graphml>

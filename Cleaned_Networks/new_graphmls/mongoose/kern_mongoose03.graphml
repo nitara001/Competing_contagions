@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d0" for="edge" attr.name="weight" attr.type="double"/>
+  <graph edgedefault="undirected">
+    <node id="GLF001"/>
+    <node id="GLF016"/>
+    <node id="GLF023"/>
+    <node id="GLF031"/>
+    <node id="GLM002"/>
+    <node id="GLM012"/>
+    <node id="GLM028"/>
+    <node id="GLM044"/>
+    <node id="GLM045"/>
+    <edge source="GLF001" target="GLF001">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="GLF001" target="GLF016">
+      <data key="d0">0.05</data>
+    </edge>
+    <edge source="GLF001" target="GLF031">
+      <data key="d0">0.28</data>
+    </edge>
+    <edge source="GLF001" target="GLM002">
+      <data key="d0">0.71</data>
+    </edge>
+    <edge source="GLF001" target="GLM012">
+      <data key="d0">0.25</data>
+    </edge>
+    <edge source="GLF001" target="GLM028">
+      <data key="d0">0.19</data>
+    </edge>
+    <edge source="GLF001" target="GLM044">
+      <data key="d0">0.17</data>
+    </edge>
+    <edge source="GLF001" target="GLM045">
+      <data key="d0">0.15</data>
+    </edge>
+    <edge source="GLF016" target="GLF016">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="GLF016" target="GLF031">
+      <data key="d0">0.05</data>
+    </edge>
+    <edge source="GLF016" target="GLM002">
+      <data key="d0">0.21</data>
+    </edge>
+    <edge source="GLF016" target="GLM012">
+      <data key="d0">0.39</data>
+    </edge>
+    <edge source="GLF016" target="GLM028">
+      <data key="d0">0.24</data>
+    </edge>
+    <edge source="GLF016" target="GLM044">
+      <data key="d0">0.24</data>
+    </edge>
+    <edge source="GLF016" target="GLM045">
+      <data key="d0">0.15</data>
+    </edge>
+    <edge source="GLF023" target="GLF023">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="GLF023" target="GLF031">
+      <data key="d0">0.05</data>
+    </edge>
+    <edge source="GLF023" target="GLM002">
+      <data key="d0">0.05</data>
+    </edge>
+    <edge source="GLF023" target="GLM012">
+      <data key="d0">0.16</data>
+    </edge>
+    <edge source="GLF023" target="GLM028">
+      <data key="d0">0.14</data>
+    </edge>
+    <edge source="GLF023" target="GLM044">
+      <data key="d0">0.13</data>
+    </edge>
+    <edge source="GLF023" target="GLM045">
+      <data key="d0">0.3</data>
+    </edge>
+    <edge source="GLF031" target="GLF031">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="GLF031" target="GLM002">
+      <data key="d0">0.13</data>
+    </edge>
+    <edge source="GLF031" target="GLM012">
+      <data key="d0">0.36</data>
+    </edge>
+    <edge source="GLF031" target="GLM028">
+      <data key="d0">0.13</data>
+    </edge>
+    <edge source="GLF031" target="GLM044">
+      <data key="d0">0.18</data>
+    </edge>
+    <edge source="GLF031" target="GLM045">
+      <data key="d0">0.05</data>
+    </edge>
+    <edge source="GLM002" target="GLM002">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="GLM002" target="GLM028">
+      <data key="d0">0.1</data>
+    </edge>
+    <edge source="GLM002" target="GLM044">
+      <data key="d0">0.14</data>
+    </edge>
+    <edge source="GLM012" target="GLM012">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="GLM012" target="GLM028">
+      <data key="d0">0.09</data>
+    </edge>
+    <edge source="GLM012" target="GLM044">
+      <data key="d0">0.05</data>
+    </edge>
+    <edge source="GLM012" target="GLM045">
+      <data key="d0">0.12</data>
+    </edge>
+    <edge source="GLM028" target="GLM028">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="GLM028" target="GLM044">
+      <data key="d0">0.11</data>
+    </edge>
+    <edge source="GLM028" target="GLM045">
+      <data key="d0">0.07</data>
+    </edge>
+    <edge source="GLM044" target="GLM044">
+      <data key="d0">1.0</data>
+    </edge>
+    <edge source="GLM045" target="GLM045">
+      <data key="d0">1.0</data>
+    </edge>
+  </graph>
+</graphml>
